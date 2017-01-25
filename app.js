@@ -17,7 +17,7 @@ var port = process.env.PORT || 8080;
 var router = express.Router();
 
 router.use(function(req, res, next){
-	console.log('inside router');
+	console.log('inside  ');
 	next();
 });
 
@@ -29,14 +29,20 @@ router.get('/', function(req,res){
 router.route('/bear')
 	.post(function(req,res){
 		var bear = new Bear();
-		bear.name = req.body.name;
-
-		bear.save(function(err){
-			if(err){
-				res.send(err);
-			}
-			res.json({message:'API created'});
-		});
+		if(req.body['name']!=null && req.body['name']!='undefined' && req.body['name']!=''){
+			console.log(req.body);
+			bear.name = req.body.name;
+			bear.save(function(err){
+				if(err){
+					res.send(err);
+				}
+				res.json({message:'API created'});
+			});
+		}else {
+			console.log("here"+JSON.stringify(req));
+			res.json({message:'API not created'});
+		}
+		
 	}).get(function(req,res){
 		Bear.find(function(err, bears){
 			if(err){
