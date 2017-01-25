@@ -38,8 +38,17 @@ router.route('/bear')
 				}
 				res.json({message:'API created'});
 			});
+		}if(req.query['name']!=null && req.query['name']!='undefined' && req.query['name']!=''){
+			console.log(req.query);
+			bear.name = req.query.name;
+			bear.save(function(err){
+				if(err){
+					res.send(err);
+				}
+				res.json({message:'API created'});
+			});
 		}else {
-			console.log("here"+JSON.stringify(req));
+			
 			res.json({message:'API not created'});
 		}
 		
