@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Add User</title>
+</head>
+<body>
+	<h1>Add USer Here</h1>
+	<input type="text" id="nameIp" placeholder="name">
+	<input type="text" id="dobIp" placeholder="DOB(mm/dd/yyyy)">
+	<button id="submit">Add</button>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#submit').on('click', function(event) {
+				event.preventDefault();
+				var nameVal = $('#nameIp').val();
+				var dobVal = $('#dobIp').val();
+				dobVal = new Date(dobVal);
+				//console.log(dobVal);
+				$.post('http://localhost:8080/api/user', {name: nameVal,dob:dobVal}, function(data, textStatus, xhr) {
+					console.log(data);
+				});
+			});
+		});
+	</script>
+</body>
+</html>
