@@ -17,50 +17,48 @@ var port = process.env.PORT || 8080;
 var router = express.Router();
 
 router.use(function(req, res, next){
-	console.log('inside  ');
 	next();
 });
 
-router.get('/', function(req,res){
-	res.json({message:'Hello World!!!'});
-});
-
-
 router.route('/bear')
-	.post(function(req,res){
-		var bear = new Bear();
-		if(req.body['name']!=null && req.body['name']!='undefined' && req.body['name']!=''){
-			console.log(req.body);
-			bear.name = req.body.name;
-			bear.save(function(err){
-				if(err){
-					res.send(err);
-				}
-				res.json({message:'API created'});
-			});
-		}if(req.query['name']!=null && req.query['name']!='undefined' && req.query['name']!=''){
-			console.log(req.query);
-			bear.name = req.query.name;
-			bear.save(function(err){
-				if(err){
-					res.send(err);
-				}
-				res.json({message:'API created'});
-			});
-		}else {
-			
-			res.json({message:'API not created'});
-		}
+.post(function(req,res){
+	var bear = new Bear();
+	if(req.body['name']!=null && req.body['name']!='undefined' && req.body['name']!=''){
 		
-	}).get(function(req,res){
-		Bear.find(function(err, bears){
+		bear.name = req.body.name;
+		bear.save(function(err){
 			if(err){
 				res.send(err);
+			}else{
+				res.json({message:'API created'});
 			}
+			
+		});
+	}else if(req.query['name']!=null && req.query['name']!='undefined' && req.query['name']!=''){
+		console.log(err);
+		bear.name = req.query.name;
+		bear.save(function(err){
+			if(err){
+				res.send(err);
+			}else{
+				res.json({message:'API created'});
+			}
+			
+		});
+	}else {
+		
+		res.json({message:'API not created'});
+	}	
+}).get(function(req,res){
+	Bear.find(function(err, bears){
+		if(err){
+			res.send(err);
+		}else{
 			res.json(bears);
-		})
-	});
-
+		}
+		
+	})
+});
 
 app.use('/api', router);
 
