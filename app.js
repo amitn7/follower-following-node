@@ -1,8 +1,8 @@
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/apis');
+mongoose.connect('mongodb://localhost/users');
 
-var Bear = require('./app/models/modelApi');
+var User = require('./app/models/userModel');
 
 
 var express = require('express');
@@ -20,13 +20,13 @@ router.use(function(req, res, next){
 	next();
 });
 
-router.route('/bear')
+router.route('/user')
 .post(function(req,res){
-	var bear = new Bear();
+	var user = new User();
 	if(req.body['name']!=null && req.body['name']!='undefined' && req.body['name']!=''){
 		
-		bear.name = req.body.name;
-		bear.save(function(err){
+		user.name = req.body.name;
+		user.save(function(err){
 			if(err){
 				res.send(err);
 			}else{
@@ -35,9 +35,8 @@ router.route('/bear')
 			
 		});
 	}else if(req.query['name']!=null && req.query['name']!='undefined' && req.query['name']!=''){
-		console.log(err);
-		bear.name = req.query.name;
-		bear.save(function(err){
+		user.name = req.query.name;
+		user.save(function(err){
 			if(err){
 				res.send(err);
 			}else{
@@ -50,11 +49,11 @@ router.route('/bear')
 		res.json({message:'API not created'});
 	}	
 }).get(function(req,res){
-	Bear.find(function(err, bears){
+	User.find(function(err, users){
 		if(err){
 			res.send(err);
 		}else{
-			res.json(bears);
+			res.json(users);
 		}
 		
 	})
