@@ -39,6 +39,8 @@ gulp.task('copy-bower-components', function() {
         .pipe(gulp.dest('./dist/bower_components'));
     gulp.src('./components/**')
         .pipe(gulp.dest('./dist/components'));
+    gulp.src('./app/images/**')
+        .pipe(gulp.dest('./dist/images/'));
 });
 gulp.task('copy-html-files', function() {
     gulp.src('./app/view/*.html')
