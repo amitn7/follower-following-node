@@ -1,8 +1,10 @@
 <div class="container">
-    <div class="aUser" ng-repeat="user in userList">
+    <div class="aUser thumbnail col-md-3" ng-repeat="user in userList">
         <div class="userImage">
             <span><i class="fa fa-user-o"></i></span>
         </div>
-        {{user}}
+        <div class="caption">
+        	{{user.name}}
+        </div>
     </div>
 </div>
