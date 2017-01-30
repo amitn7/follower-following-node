@@ -1,0 +1,64 @@
+
+<div class="container-fluid" ng-controller="MainCtrl">
+	<div class="row newsMarqueeRow">
+		<div class="col-md-3 nokhaBG">LATEST NEWS</div>
+		<div class="col-md-9">
+			<slick infinite="true" autoplay="true" slides-to-show=1 slides-to-scroll=1 init-onload="true" data="news">
+				<div ng-repeat = "new in news">{{new}}</div>
+			</slick>
+		</div>
+	</div>
+	<div class="row mainBannerSliderCont">
+		<slick infinite="true" dots="true" autoplay="true" slides-to-show=1 slides-to-scroll=1 init-onload="true" data="news">
+			<div ng-repeat="img in [0,1,2,3,4,5,6,7,8,9]">
+				<!-- <img src="/images/{{img}}"> -->
+				<div class="mainBannerCont" style="background: #000; opacity: 0.{{img}}"></div>
+			</div>
+		</slick>
+	</div>
+	<div class="row">
+		<div class="col-md-6 row">
+			<slick infinite="true" dots="true" autoplay="true" slides-to-show=1 slides-to-scroll=1 init-onload="true" data="news">
+				<div ng-repeat="img in [0,1,2,3] track by $index">
+					<!-- <img src="/images/{{img}}"> -->
+					<div class="mainBannerCont" style="background: #000; opacity: {{0.5-($index/10)}}"></div>
+				</div>
+			</slick>	
+		</div>
+		<div class="col-md-6 ">
+			<h3 class="nokhaClr">NOKHA SAMACHAR</h3>
+			<div class="midNewsStrip" ng-repeat="i in [1,2,3]">
+				<img src="images/img.jpg" class="pull-left smallMediaImg">
+				<h4><b>{{stripNews.title}}</b></h4>
+				<p class="smallTextStripNews">{{stripNews.text}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="divider"></div>
+	</div>
+	<div class="row">
+		<div class="well advCont">
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="divider"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
+			<div class="midNewsStrip" ng-repeat="i in [1,2,3]">
+				<img src="images/img.jpg" class="pull-left smallMediaImg">
+				<h4><b>{{stripNews.title}}</b></h4>
+				<p class="smallTextStripNews">{{stripNews.text}}</p>
+			</div>
+		</div>
+		<div class="col-md-6 ">
+			<div class="midNewsStrip" ng-repeat="i in [1,2,3]">
+				<img src="images/img.jpg" class="pull-left smallMediaImg">
+				<h4><b>{{stripNews.title}}</b></h4>
+				<p class="smallTextStripNews">{{stripNews.text}}</p>
+			</div>
+		</div>
+	</div>
+</div>
