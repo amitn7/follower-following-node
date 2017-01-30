@@ -66,10 +66,6 @@ router.route('/user')
 
 app.use('/api', router);
 
-app.get('/add', function(req, resp) {
-    resp.sendFile(path.join(__dirname + '/public/index.html'));
-});
-
 app.use(express.static('public'));
 app.listen(port);
 console.log('Server started at' + port);
